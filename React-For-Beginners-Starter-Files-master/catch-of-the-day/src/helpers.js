@@ -20,44 +20,19 @@ export function slugify(text) {
     .replace(/-+$/, "");
 }
 
-export function getFunName() {
-  const adjectives = [
-    "adorable",
-    "beautiful",
-    "clean",
-    "drab",
-    "elegant",
-    "fancy",
-    "glamorous",
-    "handsome",
-    "long",
-    "magnificent",
-    "old-fashioned",
-    "plain",
-    "quaint",
-    "sparkling",
-    "ugliest",
-    "unsightly",
-    "angry",
-    "bewildered",
-    "clumsy",
-    "defeated",
-    "embarrassed",
-    "fierce",
-    "grumpy",
-    "helpless",
-    "itchy",
-    "jealous",
-    "lazy",
-    "mysterious",
-    "nervous",
-    "obnoxious",
-    "panicky",
-    "repulsive",
-    "scary",
-    "thoughtless",
-    "uptight",
-    "worried"
+export function playerShuffle() {
+  const players = [
+    "Jordan",
+    "Jereme",
+    "Marty",
+    "Yogesh",
+    "Steve",
+    "Ian",
+    "Josh",
+    "Russ",
+    "Alex",
+    "Beckett",
+    "Reehana"
   ];
 
   const nouns = [
@@ -93,5 +68,35 @@ export function getFunName() {
     "data"
   ];
 
-  return `${rando(adjectives)}-${rando(adjectives)}-${rando(nouns)}`;
+  return `${rando(players)}-${rando(players)}`;
 }
+
+//CALCULATE DISTANCE
+const distanceCalc = (lat1, lon1, lat2, lon2) => {
+  let radlat1 = Math.PI * lat1/180;
+  let radlat2 = Math.PI * lat2/180;
+  let radlon1 = Math.PI * lon1/180;
+  let radlon2 = Math.PI * lon2/180;
+  let theta = lon1 - lon2;
+  let radtheta = Math.PI * theta/180;
+  let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+  dist = Math.acos(dist);
+  dist = dist * 180/Math.PI;
+  dist = dist * 60 * 1.1515;
+  // RETURNS DISTANCE IN KILOMETERS
+  return dist * 1.609344;
+}
+
+// RETURN THE RESTAURANT WITH THE SHORTEST DIST
+// NEED TO ACCESS STATE FOR RESTAURANTS
+// let myRestaurants = restaurants.map((restaurant, min) => {
+//   let distance = distanceCalc(userLocation.latitude, userLocation.longitude, restaurant.latitude, restaurant.longitude);
+//   restaurant.distance = distance;
+// return restaurant;
+// });
+
+// var shortestDistance = Math.min(...myRestaurants.map(r => r.distance));
+
+// var closestRestaurant = myRestaurants.find(restaurant => {
+//   return restaurant.distance === shortestDistance;
+// });
