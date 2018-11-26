@@ -5,10 +5,11 @@ class Header extends React.Component {
         return (
             <div>
                 <header className="top">
-                    <h1>Header</h1>
+                    <h1>Menus for All</h1>
                     <h3 className="tagline">
-                        <span>Tag Line</span>
+                        <span>{this.props.restaurant.name}</span>
                     </h3>
+                    <p>{this.props.restaurant.caption}</p>
                 </header>
             </div>
         )

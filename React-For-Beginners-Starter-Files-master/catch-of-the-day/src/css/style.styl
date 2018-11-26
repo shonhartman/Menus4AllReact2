@@ -13,11 +13,12 @@ header.top
     // This is a bunch of goofy CSS to make the logo look decent
     .ofThe
       display flex
+
       font-size 3rem
       color orange
       justify-content: center;
       align-items: center;
-      background url('images/anchor.svg') center no-repeat;
+      // background url('images/anchor.svg') center no-repeat;
       background-size cover
       padding 0 1rem
       .of
@@ -27,11 +28,11 @@ header.top
   h3
     margin 0
     font-size 2rem
-    color orange
+    color #c35600
     position relative
     display inline-block
     span
-      background white
+      background #000000
       position relative
       z-index 2
       padding-left 1rem
@@ -50,19 +51,22 @@ header.top
       top auto
       bottom 7px
 
-
 .catch-of-the-day
   display flex
   height 90vh
   max-width:1500px
   margin 0 auto
   margin-top 5vh
+  .inventory
+    background #fff
+    color black
   & > *
     flex 1 4 auto
     padding 2rem
     border 1rem double lighten(black,10%)
     position relative
-    background white
+    // background white
+    background #000000;
     transition all 0.3s
     box-shadow 0 5px 5px rgba(0,0,0,0.1)
     overflow scroll
@@ -150,11 +154,11 @@ ul.order
 .fish-edit
   margin-bottom 20px
   border 2px solid black
-  overflow hidden
+  // overflow hidden
   display flex
   flex-wrap wrap
   input, textarea, select
-    width 33.33%
+    width 50%
     padding 10px
     line-height 1
     font-size 1.2rem
@@ -173,7 +177,10 @@ ul.order
     width 100%
   button
     width 100%
+    // background lightgrey
     border 0
+  .menu-item
+    input width 100%
 
 
 // Menu Styles
@@ -220,6 +227,8 @@ button, input[type=submit]
   transition all 0.2s
   position relative
   z-index 2
+  .edit-facade
+    background chartreuse
   &[disabled]
     color red
     background white

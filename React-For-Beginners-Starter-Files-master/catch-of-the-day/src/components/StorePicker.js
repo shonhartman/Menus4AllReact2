@@ -16,32 +16,29 @@ class StorePicker extends React.Component {
     }
 
     goToStore = () => {
-        console.log(this.props);
-        // event.preventDefault();
-        // this.autoSubmit.submit();
-        // const storeName = this.clientInput.value.value;
-        // this.props.history.push(`/store/${storeName}`);
-    }
-
-    componentDidMount() {
-        this.goToStore();
+        // TODO : REPLACE PLAYER SHUFFLE WITH GEOLOCATION FUNCTION
         this.props.history.push(`/store/${playerShuffle()}`);
     }
 
+    componentDidMount() {
+        // this.goToStore();
+    }
+
     render() {
-        const loggedIn = false;
+        const loggedIn = true;
 
         return (
             <div className="wrapper">
                 {loggedIn ?
                     <form className="store-selector" onSubmit={this.editStore}>
-                            <h2>Enter a Store</h2>
+                            <h1>Enter a Store</h1>
                             <input type="text" ref={this.adminInput} required placeholder="Store Name"/>
                             <button type="submit">Go to Store</button>
                     </form>
                     :
-                    <form className="store-selector" onSubmit={this.goToStore}>
+                    <form className="store-selector">
                             <h2>Finding Your Location</h2>
+                            {this.goToStore()}
                             {/* <input type="text" ref={this.clientInput} required placeholder="Store Name" defaultValue={playerShuffle()}/> */}
                             {/* <button type="submit">{this.goToStore()}</button> */}
                     </form>
