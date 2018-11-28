@@ -50,12 +50,12 @@ class App extends React.Component {
         console.log(restaurant.menuBlocks[key].heading)
         console.log(updatedSection)
 
-        restaurant.menuBlocks[key].heading = updatedSection;
+        restaurant.menuBlocks[key] = updatedSection;
 
-        console.log(restaurant.menuBlocks[key].heading);
+        // console.log(restaurant.menuBlocks[key].heading);
 
         // 3. Set the updated variable to state
-        // this.setState({ restaurant });
+        this.setState({ restaurant });
     }
     addMenuItemSection = (section, index) => {
         // 1. take a copy of the existing state

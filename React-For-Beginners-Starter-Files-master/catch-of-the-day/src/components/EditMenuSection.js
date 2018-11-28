@@ -5,13 +5,10 @@ class EditMenuSection extends React.Component {
         // console.log(key)
         // 1. Take a copy of the current heading
         const updatedHeading = {
-            [this.props.menuHeading] : event.currentTarget.value
+            [event.currentTarget.name] : event.currentTarget.value
             // [event.currentTarget.value] : event.currentTarget.value
         };
-        console.log(this.props.index.toString())
-        this.props.updateMenuSection(this.props.index.toString(), updatedHeading)
-        // console.log(updatedHeading)
-
+        this.props.updateMenuSection(this.props.index, updatedHeading)
     }
     handleItemChange = () => {
         console.log("Handling Item Change")
