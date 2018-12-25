@@ -15,13 +15,18 @@ class Entry extends React.Component {
             // Guard : Return an empty array if there aren't any Menu Items
             item.menuItems = item.menuItems ? item.menuItems : [];
             // 2. Map over Menu Items under each Heading
-            const menuItems = item.menuItems.map(item => item.item);
+            const menuItems = item.menuItems
+                                .map(item => {
+                                    return item.item;
+                                })
+            
             // 3. Return Edit Menu Form
-            // return  <div>
-            //             <h2>{menuHeading}</h2>
-            //             <ul>{menuItems.map(item => <li>{item}</li>)}</ul>
-            //         </div>;
-            return <EditMenuSection updateMenuSection={this.props.updateMenuSection} key={index} index={index} menuHeading={menuHeading} menuItems={menuItems}/>;
+            return <EditMenuSection 
+                        updateMenuSection={this.props.updateMenuSection} 
+                        key={index} index={index} 
+                        menuHeading={menuHeading} 
+                        menuItems={menuItems}
+                    />;
 
         }
         const renderHeadingAndItems = (menu) => {
@@ -35,23 +40,8 @@ class Entry extends React.Component {
 
         return (
             <div className="inventory">
-                <h1>Entry</h1>
                 <button onClick={this.props.loadSampleData}>Load Sample Data</button>
-
-                {renderHeadingAndItems(menu)}
-
-                {/* {Object.keys(menuSections).map(menuSection => <EditMenuSection/>)} */}
-                {/* {menuSections.map(menuItem => <EditMenuSection />)} */}
-
-                {/* {Object.keys(this.props.menu).map(menu => <EditMenuSection /> )} */}
-
-                <MenuSection
-                    addMenuSection={this.props.addMenuSection}
-                    addMenuItemSection={this.props.addMenuItemSection}
-                    restaurant={this.props.restaurant}
-                />
-
-
+                {/* RESTAURANT DETAILS */}
                 {this.props.restaurant.name && this.props.restaurant.longitude ?
                     <EditRestaurantDetails
                         updateRestaurantDetails={this.props.updateRestaurantDetails}
@@ -63,6 +53,15 @@ class Entry extends React.Component {
                         restaurant={this.props.restaurant}
                     />
                 }
+                {/* EDIT MENU SECTION */}
+                <h1>Edit Menu Items</h1>
+                {renderHeadingAndItems(menu)}
+                {/* ADD MENU SECTION */}
+                <MenuSection
+                    addMenuSection={this.props.addMenuSection}
+                    addMenuItemSection={this.props.addMenuItemSection}
+                    restaurant={this.props.restaurant}
+                />
             </div>
         )
     }

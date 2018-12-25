@@ -12,7 +12,7 @@ class MenuSection extends React.Component {
         // 1. stop the form from submitting
         event.preventDefault();
         const heading = {
-            heading: this.headingRef.value.value,
+            heading: this.headingRef.current.value,
         }
         this.props.addMenuSection(heading);
         // 2. refresh the form
@@ -22,9 +22,9 @@ class MenuSection extends React.Component {
     addMenuItems = (event) => {
         // 1. stop the form from submitting
         event.preventDefault();
-        const index = this.selectedMenuSectionRef.value.value;
+        const index = this.selectedMenuSectionRef.current.value;
         const item = {
-            item: this.itemRef.value.value,
+            item: this.itemRef.current.value,
         }
         this.props.addMenuItemSection(item, index);
         // 2. refresh the form
@@ -42,11 +42,9 @@ class MenuSection extends React.Component {
             <div className="menu-section">
             <select name="" id="" ref={this.selectedMenuSectionRef}>
                 {this.renderSectionOptions()}
-                {/* <option value="0">1</option>
-                <option value="1">2</option> */}
             </select>
                 <div className="heading-wrapper">
-                    <h1>Menu Section</h1>
+                    <h1>Add Menu Section</h1>
                     <form className="fish-edit" onSubmit={this.addHeading}>
                         <input type="text" name="heading" ref={this.headingRef} placeholder="heading" />
                         <button type="submit">Add Heading</button>

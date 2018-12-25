@@ -2,14 +2,13 @@ import React from "react";
 
 class EditRestaurantDetails extends React.Component {
     handleChange = event => {
-        //update the restaurant details
         // 1. Take a copy of the restaurant details
         const updatedDetails = {
             ...this.props.restaurant,
             [event.currentTarget.name]: event.currentTarget.value
         }
+        // 2. Update the restaurant details
         this.props.updateRestaurantDetails(updatedDetails)
-        // console.log(updatedDetails)
     }
     render() {
         return  <div>

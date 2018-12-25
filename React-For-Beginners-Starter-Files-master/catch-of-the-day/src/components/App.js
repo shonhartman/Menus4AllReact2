@@ -46,14 +46,8 @@ class App extends React.Component {
     updateMenuSection = (key, updatedSection, index) => {
         // 1. Take a copy of the current section
         let restaurant = {...this.state.restaurant};
-        // 2. Add our updated menu section to our copied restaurant variable
-        console.log(restaurant.menuBlocks[key].heading)
-        console.log(updatedSection)
-
-        restaurant.menuBlocks[key] = updatedSection;
-
-        // console.log(restaurant.menuBlocks[key].heading);
-
+        // 2. Add our updated menu section to our copied restaurant variable\
+        restaurant = updatedSection;
         // 3. Set the updated variable to state
         this.setState({ restaurant });
     }
@@ -79,16 +73,12 @@ class App extends React.Component {
         const isLoggedIn = true;
         // TODO : Set the Current Restaurant returned from the GetLocation Function
         // let currentRestaurant = restaurants.filter(restaurant => restaurant.url == this.props.match.url);
-
         return (
             <div className="catch-of-the-day">
                 <div className="menu">
                 {/* TODO : Filter by Router Match */}
-                    {/* {Object.keys(this.state.restaurant).map(key => <Header key={key} index={key} restaurant={this.state.restaurant[key]} />)} */}
                     <Header restaurant={this.state.restaurant} />
-
                     <ul className="fishes">
-                        {/* {Object.keys(this.state.restaurant).map(key => <MenuDisplay key={key} index={key} menu={this.state.restaurant.menuBlocks} /> )} */}
                         <MenuDisplay menu={this.state.restaurant.menuBlocks} />
                     </ul>
                 </div>

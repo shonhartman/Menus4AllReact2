@@ -10,7 +10,7 @@ class StorePicker extends React.Component {
         // 1. Stop the form from submitting
         event.preventDefault();
         // 2. get the text from that input
-        const storeName = this.adminInput.value.value;
+        const storeName = this.adminInput.current.value;
         // 3. Change the page to /store/whatever-they-entered
         this.props.history.push(`/store/${storeName}`);
     }
@@ -39,8 +39,6 @@ class StorePicker extends React.Component {
                     <form className="store-selector">
                             <h2>Finding Your Location</h2>
                             {this.goToStore()}
-                            {/* <input type="text" ref={this.clientInput} required placeholder="Store Name" defaultValue={playerShuffle()}/> */}
-                            {/* <button type="submit">{this.goToStore()}</button> */}
                     </form>
                 }
             </div>
