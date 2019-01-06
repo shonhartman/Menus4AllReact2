@@ -1,14 +1,18 @@
 import React from "react";
+import firebase from "firebase";
 import Entry from "./Entry";
 import Header from "./Header";
 import MenuDisplay from "./MenuDisplay";
+import Login from "./Login";
 import sampleData from "../sample-data";
 import base from "../base";
 
 class App extends React.Component {
     state = {
-        restaurant: {}
+        restaurant: {},
+        uid: null
     };
+
     componentDidMount() {
         const { params } = this.props.match;
         this.ref = base.syncState(`${params.storeId}/restaurant`, {
@@ -18,6 +22,21 @@ class App extends React.Component {
     }
     componentWillUnmount() {
         base.removeBinding(this.ref);
+    }
+    authenticate = () => {
+        const authProvider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(authProvider).then(result => {
+                {console.log(result)}
+                this.setState({
+                    uid: result.user.uid
+                })
+            }
+        );
+
+    }
+    logout =  () => {
+        firebase.auth().signOut();
+        this.setState({ uid : null })
     }
     addRestaurantDetails = details => {
         // 1. take a copy of the existing state
@@ -70,9 +89,10 @@ class App extends React.Component {
         this.setState({ restaurant: sampleData });
     }
     render() {
-        const isLoggedIn = true;
         // TODO : Set the Current Restaurant returned from the GetLocation Function
         // let currentRestaurant = restaurants.filter(restaurant => restaurant.url == this.props.match.url);
+        const logout = <button className="facebook" onClick={this.logout}>Log Out</button>
+        
         return (
             <div className="catch-of-the-day">
                 <div className="menu">
@@ -81,8 +101,9 @@ class App extends React.Component {
                     <ul className="fishes">
                         <MenuDisplay menu={this.state.restaurant.menuBlocks} />
                     </ul>
+                    {!this.state.uid ? <Login authenticate={this.authenticate} uid={this.state.uid} /> : logout}
                 </div>
-                {isLoggedIn ?
+                {this.state.uid ?
                 <Entry
                     addRestaurantDetails={this.addRestaurantDetails}
                     updateRestaurantDetails={this.updateRestaurantDetails}
